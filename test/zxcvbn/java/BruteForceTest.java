@@ -124,8 +124,8 @@ public class BruteForceTest {
     for (Map.Entry<String, Integer> entry : fixture.entrySet()) {
       String password = entry.getKey();
       Integer expectedCardinality = entry.getValue();
-      Integer cardinality = BruteForce.calculateBrutForceCardinality(password);
-      Assert.assertEquals(password, expectedCardinality, cardinality);
+      Integer calcCardinality = BruteForce.getBrutForceCardinality(password);
+      Assert.assertEquals(password, expectedCardinality, calcCardinality);
     }
   }
   

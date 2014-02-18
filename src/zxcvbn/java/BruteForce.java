@@ -30,7 +30,7 @@ public class BruteForce {
    * @param password the password we are estimating the brut force cardinality
    * @return the brut force cardinality
    */
-  public static int calculateBrutForceCardinality (String password) {
+  public static int getBrutForceCardinality (String password) {
     
     boolean lower   = false, 
             upper   = false, 
