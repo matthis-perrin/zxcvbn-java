@@ -22,6 +22,7 @@ package zxcvbn.java;
  */
 public class Entropy {
   
+  
   /**
    * Calculate the base 2 logarithm of a value
    * @param value the <code>double</code> we are calculating the log from
@@ -30,7 +31,9 @@ public class Entropy {
   public static double log2 (double value) {
     return Math.log(value) / LOG_2;
   }
-  private static final double LOG_2 = Math.log(2);
+  private static final double LOG_2 = Math.log(2d);
+  private static final double LOG_10 = log2(10d);
+  private static final double LOG_26 = log2(26d);
   
   
   /**
@@ -43,5 +46,43 @@ public class Entropy {
     int cardinality = BruteForce.getBrutForceCardinality(match);
     return Math.max(0, log2(cardinality * match.length()));
   }
+  
+  
+  /**
+   * Calculate the entropy of a sequence of character that are following each
+   * other (e.g. abcd, 1234, RST...)
+   * @param match the sequence of character
+   * @param asc describes if the sequence is ascending (true) or descending 
+   *            (false)
+   * @return the entropy of the sequence
+   */
+  public static double calculateSequenceEntropy (String match, boolean asc) {
+    if (match.isEmpty()) {
+      return 0;
+    }
+    
+    char firstChar = match.charAt(0);
+    double baseEntropy;
+    
+    if (firstChar == 'a' || firstChar == '1') {
+      baseEntropy = 1d;
+    }
+    else if (Character.isDigit(firstChar)) {
+      baseEntropy = LOG_10;
+    }
+    else if (Character.isLowerCase(firstChar)) {
+      baseEntropy = LOG_26;
+    }
+    else {
+      baseEntropy = LOG_26 + 1d;
+    }
+    
+    if (!asc) {
+      baseEntropy++;
+    }
+    
+    return baseEntropy + log2(match.length());
+  }
+  
   
 }

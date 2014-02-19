@@ -75,5 +75,52 @@ public class EntropyTest {
       Assert.assertEquals(password, expectedEntropy, computedEntropy);
     }
   }
+
+  /**
+   * Test of calculateSequenceEntropy method, of class Entropy.
+   */
+  @Test
+  public void testCalculateSequenceEntropy() {
+    HashMap<String, Double> fixtureAsc = new HashMap<>();
+    fixtureAsc.put("", 0d);
+    fixtureAsc.put("abcd", 3d);
+    fixtureAsc.put("bcde", 6.700439718141093);
+    fixtureAsc.put("klmnopqrstuv", 8.285402218862249);
+    fixtureAsc.put("ABCD", 7.700439718141093);
+    fixtureAsc.put("BCDE", 7.700439718141093);
+    fixtureAsc.put("OPQRSTUVWXYZ", 9.285402218862249);
+    fixtureAsc.put("1234", 3d);
+    fixtureAsc.put("2345", 5.321928094887363);
+    fixtureAsc.put("0123456789", 6.643856189774725);
+    
+    // Test the asc fixture
+    for (Map.Entry<String, Double> entry : fixtureAsc.entrySet()) {
+      String password = entry.getKey();
+      double expectedEntropy = entry.getValue();
+      double computedEntropy = Entropy.calculateSequenceEntropy(password, true);
+      Assert.assertEquals(password, expectedEntropy, computedEntropy);
+    }
+    
+    
+    HashMap<String, Double> fixtureDesc = new HashMap<>();
+    fixtureDesc.put("", 0d);
+    fixtureDesc.put("dcba", 7.700439718141093);
+    fixtureDesc.put("edcb", 7.700439718141093);
+    fixtureDesc.put("vutsrqponmlk", 9.285402218862249);
+    fixtureDesc.put("DCBA", 8.700439718141093);
+    fixtureDesc.put("EDCB", 8.700439718141093);
+    fixtureDesc.put("ZYXWVUTSRQPO", 10.285402218862249);
+    fixtureDesc.put("4321", 6.321928094887363);
+    fixtureDesc.put("5432", 6.321928094887363);
+    fixtureDesc.put("9876543210", 7.643856189774725);
+    
+    // Test the asc fixture
+    for (Map.Entry<String, Double> entry : fixtureDesc.entrySet()) {
+      String password = entry.getKey();
+      double expectedEntropy = entry.getValue();
+      double computedEntropy = Entropy.calculateSequenceEntropy(password, false);
+      Assert.assertEquals(password, expectedEntropy, computedEntropy);
+    }
+  }
   
 }
