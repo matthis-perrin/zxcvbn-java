@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-package zxcvbn.java;
+package zxcvbn.java.scoring;
 
+import zxcvbn.java.scoring.Entropy;
 import java.util.HashMap;
 import java.util.Map;
 import junit.framework.Assert;

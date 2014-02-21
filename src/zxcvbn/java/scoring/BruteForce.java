@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package zxcvbn.java;
+package zxcvbn.java.scoring;
 
 /**
  *
