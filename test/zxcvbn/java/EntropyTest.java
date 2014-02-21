@@ -161,5 +161,32 @@ public class EntropyTest {
       Assert.assertEquals(password, expectedEntropy, computedEntropy);
     }
   }
+
+  /**
+   * Test of calculateYearEntropy method, of class Entropy.
+   */
+  @Test
+  public void testCalculateYearEntropy() {
+    System.out.println("Test of calculateYearEntropy method, of class Entropy");
+    
+    HashMap<String, Double> fixture = new HashMap<>();
+    fixture.put("1900", 6.894817763307944);
+    fixture.put("1982", 6.894817763307944);
+    fixture.put("1990", 6.894817763307944);
+    fixture.put("1993", 6.894817763307944);
+    fixture.put("2000", 6.894817763307944);
+    fixture.put("2007", 6.894817763307944);
+    fixture.put("2012", 6.894817763307944);
+    fixture.put("2016", 6.894817763307944);
+    fixture.put("2019", 6.894817763307944);
+    
+    // Test the fixture
+    for (Map.Entry<String, Double> entry : fixture.entrySet()) {
+      String password = entry.getKey();
+      double expectedEntropy = entry.getValue();
+      double computedEntropy = Entropy.calculateYearEntropy(password);
+      Assert.assertEquals(password, expectedEntropy, computedEntropy);
+    }
+  }
   
 }

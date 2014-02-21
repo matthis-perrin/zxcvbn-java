@@ -34,6 +34,7 @@ public class Entropy {
   private static final double LOG_2 = Math.log(2d);
   private static final double LOG_10 = log2(10d);
   private static final double LOG_26 = log2(26d);
+  private static final double LOG_119 = log2(119d);
   
   
   /**
@@ -64,19 +65,24 @@ public class Entropy {
     char firstChar = match.charAt(0);
     double baseEntropy;
     
+    // A sequence that starts with a 'a' or a '1' is very weak
     if (firstChar == 'a' || firstChar == '1') {
       baseEntropy = 1d;
     }
+    // Digit sequence don't have a lot of entropy
     else if (Character.isDigit(firstChar)) {
       baseEntropy = LOG_10;
     }
+    // Alpha sequence have more entropy
     else if (Character.isLowerCase(firstChar)) {
       baseEntropy = LOG_26;
     }
+    // We give an extra bit of entropy for upper case sequence
     else {
       baseEntropy = LOG_26 + 1d;
     }
     
+    // An other extra bit of entropy if the sequence is descending
     if (!asc) {
       baseEntropy++;
     }
@@ -86,12 +92,22 @@ public class Entropy {
   
   
   /**
-   * Calculate the entropy a <code>String</code> composed only of digits
+   * Calculate the entropy of a <code>String</code> composed only of digits
    * @param match a <code>String</code> composed only of digits
    * @return the entropy of the value
    */
   public static double calculateDigitsEntropy (String match) {
     return log2(Math.pow(10, match.length()));
+  }
+  
+  
+  /**
+   * Calculate the entropy of a <code>String,</code> that represent a year
+   * @param match a <code>String,</code> that represent a year
+   * @return the entropy of the value
+   */
+  public static double calculateYearEntropy (String match) {
+    return LOG_119;
   }
   
   
