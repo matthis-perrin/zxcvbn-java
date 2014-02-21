@@ -33,6 +33,8 @@ public class EntropyTest {
    */
   @Test
   public void testLog2() {
+    System.out.println("Test of log2 method, of class Entropy");
+    
     Assert.assertEquals(Double.NaN, Entropy.log2(Double.NEGATIVE_INFINITY));
     Assert.assertEquals(Double.NaN, Entropy.log2(-1));
     Assert.assertEquals(Double.NEGATIVE_INFINITY, Entropy.log2(0));
@@ -51,6 +53,8 @@ public class EntropyTest {
    */
   @Test
   public void testCalculateRepeatEntropy() {
+    System.out.println("Test of calculateRepeatEntropy method, of class Entropy");
+    
     HashMap<String, Double> fixture = new HashMap<>();
     fixture.put("", 0d);
     fixture.put("a", 4.700439718141093);
@@ -84,6 +88,8 @@ public class EntropyTest {
    */
   @Test
   public void testCalculateSequenceEntropy() {
+    System.out.println("Test of calculateSequenceEntropy method, of class Entropy");
+    
     HashMap<String, Double> fixtureAsc = new HashMap<>();
     fixtureAsc.put("", 0d);
     fixtureAsc.put("abcd", 3d);
@@ -132,6 +138,8 @@ public class EntropyTest {
    */
   @Test
   public void testCalculateDigitsEntropy() {
+    System.out.println("Test of calculateDigitsEntropy method, of class Entropy");
+    
     HashMap<String, Double> fixture = new HashMap<>();
     fixture.put("", 0d);
     fixture.put("2", 3.3219280948873626);

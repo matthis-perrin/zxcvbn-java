@@ -32,6 +32,8 @@ public class BruteForceTest {
    */
   @Test
   public void testCalculateBrutForceCardinality() {
+    System.out.println("Test of calculateBrutForceCardinality method, of class BruteForce");
+    
     HashMap<String, Integer> fixture = new HashMap<>();
     
     // Testing sets of characters
