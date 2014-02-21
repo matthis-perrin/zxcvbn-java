@@ -85,4 +85,14 @@ public class Entropy {
   }
   
   
+  /**
+   * Calculate the entropy a <code>String</code> composed only of digits
+   * @param match a <code>String</code> composed only of digits
+   * @return the entropy of the value
+   */
+  public static double calculateDigitsEntropy (String match) {
+    return log2(Math.pow(10, match.length()));
+  }
+  
+  
 }

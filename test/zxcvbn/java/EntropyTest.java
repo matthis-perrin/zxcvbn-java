@@ -27,6 +27,7 @@ import org.junit.Test;
  */
 public class EntropyTest {
   
+  
   /**
    * Test of log2 method, of class Entropy.
    */
@@ -44,6 +45,7 @@ public class EntropyTest {
             Entropy.log2(Double.POSITIVE_INFINITY));
   }
 
+  
   /**
    * Test of calculateRepeatEntropy method, of class Entropy.
    */
@@ -76,6 +78,7 @@ public class EntropyTest {
     }
   }
 
+  
   /**
    * Test of calculateSequenceEntropy method, of class Entropy.
    */
@@ -119,6 +122,34 @@ public class EntropyTest {
       String password = entry.getKey();
       double expectedEntropy = entry.getValue();
       double computedEntropy = Entropy.calculateSequenceEntropy(password, false);
+      Assert.assertEquals(password, expectedEntropy, computedEntropy);
+    }
+  }
+
+  
+  /**
+   * Test of calculateDigitsEntropy method, of class Entropy.
+   */
+  @Test
+  public void testCalculateDigitsEntropy() {
+    HashMap<String, Double> fixture = new HashMap<>();
+    fixture.put("", 0d);
+    fixture.put("2", 3.3219280948873626);
+    fixture.put("45", 6.643856189774725);
+    fixture.put("296", 9.965784284662087);
+    fixture.put("2954", 13.28771237954945);
+    fixture.put("01678", 16.609640474436812);
+    fixture.put("394870", 19.931568569324174);
+    fixture.put("9486034", 23.25349666421154);
+    fixture.put("10037235", 26.5754247590989);
+    fixture.put("923874291", 29.897352853986263);
+    fixture.put("9041957412", 33.219280948873624);
+    
+    // Test the fixture
+    for (Map.Entry<String, Double> entry : fixture.entrySet()) {
+      String password = entry.getKey();
+      double expectedEntropy = entry.getValue();
+      double computedEntropy = Entropy.calculateDigitsEntropy(password);
       Assert.assertEquals(password, expectedEntropy, computedEntropy);
     }
   }
