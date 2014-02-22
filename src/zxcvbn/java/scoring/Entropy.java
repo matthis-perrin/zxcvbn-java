@@ -16,6 +16,11 @@
 
 package zxcvbn.java.scoring;
 
+import zxcvbn.java.matching.DigitMatch;
+import zxcvbn.java.matching.RepeatMatch;
+import zxcvbn.java.matching.SequenceMatch;
+import zxcvbn.java.matching.YearMatch;
+
 /**
  *
  * @author Matthis Perrin <matthis.perrin at gmail.com>
@@ -39,30 +44,23 @@ public class Entropy {
   
   /**
    * Calculate the entropy of a repeated a character
-   * @param match a <code>String</code> which is the same character repeated
-   *              several times.
-   * @return the entropy of the value
+   * @param match a <code>RepeatMatch</code>
+   * @return the entropy of the match
    */
-  public static double calculateRepeatEntropy (String match) {
+  public static double calculateRepeatEntropy (RepeatMatch match) {
     int cardinality = BruteForce.getBrutForceCardinality(match);
-    return Math.max(0, log2(cardinality * match.length()));
+    return Math.max(0, log2(cardinality * match.getRepeat()));
   }
   
   
   /**
    * Calculate the entropy of a sequence of character that are following each
    * other (e.g. abcd, 1234, RST...)
-   * @param match the sequence of character
-   * @param asc describes if the sequence is ascending (true) or descending 
-   *            (false)
-   * @return the entropy of the sequence
+   * @param match a <code>SequenceMatch</code>
+   * @return the entropy of the match
    */
-  public static double calculateSequenceEntropy (String match, boolean asc) {
-    if (match.isEmpty()) {
-      return 0;
-    }
-    
-    char firstChar = match.charAt(0);
+  public static double calculateSequenceEntropy (SequenceMatch match) {
+    char firstChar = match.getFirstCharacter();
     double baseEntropy;
     
     // A sequence that starts with a 'a' or a '1' is very weak
@@ -83,30 +81,30 @@ public class Entropy {
     }
     
     // An other extra bit of entropy if the sequence is descending
-    if (!asc) {
+    if (!match.isAscending()) {
       baseEntropy++;
     }
     
-    return baseEntropy + log2(match.length());
+    return baseEntropy + log2(match.getLength());
   }
   
   
   /**
-   * Calculate the entropy of a <code>String</code> composed only of digits
-   * @param match a <code>String</code> composed only of digits
-   * @return the entropy of the value
+   * Calculate the entropy of a <code>DigitMatch</code> composed only of digits
+   * @param match a <code>DigitMatch</code>
+   * @return the entropy of the match
    */
-  public static double calculateDigitsEntropy (String match) {
-    return log2(Math.pow(10, match.length()));
+  public static double calculateDigitsEntropy (DigitMatch match) {
+    return log2(Math.pow(10, match.getLength()));
   }
   
   
   /**
-   * Calculate the entropy of a <code>String,</code> that represent a year
-   * @param match a <code>String,</code> that represent a year
-   * @return the entropy of the value
+   * Calculate the entropy of a <code>YearMatch</code> that represents a year
+   * @param match a <code>YearMatch</code>
+   * @return the entropy of the match
    */
-  public static double calculateYearEntropy (String match) {
+  public static double calculateYearEntropy (YearMatch match) {
     return LOG_119;
   }
   
