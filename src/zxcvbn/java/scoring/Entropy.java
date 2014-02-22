@@ -16,6 +16,7 @@
 
 package zxcvbn.java.scoring;
 
+import zxcvbn.java.matching.DateMatch;
 import zxcvbn.java.matching.DigitMatch;
 import zxcvbn.java.matching.RepeatMatch;
 import zxcvbn.java.matching.SequenceMatch;
@@ -36,10 +37,14 @@ public class Entropy {
   public static double log2 (double value) {
     return Math.log(value) / LOG_2;
   }
+  
+  // Precomputed log value used during etropy calculation
   private static final double LOG_2 = Math.log(2d);
   private static final double LOG_10 = log2(10d);
   private static final double LOG_26 = log2(26d);
   private static final double LOG_119 = log2(119d);
+  private static final double LOG_37200 = log2(37200d);
+  private static final double LOG_44268 = log2(44268d);
   
   
   /**
@@ -106,6 +111,32 @@ public class Entropy {
    */
   public static double calculateYearEntropy (YearMatch match) {
     return LOG_119;
+  }
+  
+  
+  /**
+   * Calculate the entropy of a <code>DateMatch</code> which represents a date
+   * @param match a <code>DateMatch</code>
+   * @return the entropy of the match
+   */
+  public static double calculateDateEntropy (DateMatch match) {
+    double entropy;
+    
+    // Two digits year
+    if (match.getYear() < 100) {
+      entropy = LOG_37200; // 31 * 12 * 100
+    }
+    // Four digits year
+    else {
+      entropy = LOG_44268; // 31 * 12 * 119
+    }
+    
+    // Add two bits of entropy if there is a separator
+    if (!match.getSeparator().isEmpty()) {
+      entropy += 2;
+    }
+    
+    return entropy;
   }
   
   
