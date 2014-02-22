@@ -16,6 +16,8 @@
 
 package zxcvbn.java.scoring;
 
+import zxcvbn.java.matching.Match;
+
 /**
  *
  * @author Matthis Perrin <matthis.perrin at gmail.com>
@@ -27,10 +29,10 @@ public class BruteForce {
    * Calculates the brut force cardinality of a given password.
    * The brut force cardinality is the estimated range of character a brut
    * force method would use to crack the password.
-   * @param password the password we are estimating the brut force cardinality
+   * @param match the password we are estimating the brut force cardinality
    * @return the brut force cardinality
    */
-  public static int getBrutForceCardinality (String password) {
+  public static int getBrutForceCardinality (Match match) {
     
     boolean lower   = false, 
             upper   = false, 
@@ -38,7 +40,7 @@ public class BruteForce {
             symbols = false, 
             unicode = false;
     
-    for (char c : password.toCharArray()) {
+    for (char c : match.getToken().toCharArray()) {
       if (0x30 <= c && c <= 0x39) digits = true;
       else if (0x41 <= c && c <= 0x5a) upper = true;
       else if (0x61 <= c && c <= 0x7a) lower = true;
