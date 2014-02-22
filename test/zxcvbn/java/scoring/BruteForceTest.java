@@ -16,11 +16,11 @@
 
 package zxcvbn.java.scoring;
 
-import zxcvbn.java.scoring.BruteForce;
 import java.util.HashMap;
 import java.util.Map;
 import junit.framework.Assert;
 import org.junit.Test;
+import zxcvbn.java.matching.BasicMatch;
 
 /**
  *
@@ -46,9 +46,6 @@ public class BruteForceTest {
             "ÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿĀāĂăĄąĆćĈĉĊċČčĎďĐđĒēĔĕĖėĘęĚ" +
             "ěĜĝĞğĠġĢģĤĥĦħĨĩĪīĬĭĮįİıĲĳĴĵĶķĸĹĺĻļĽľĿŀŁłŃńŅņŇňŉŊŋŌōŎŏŐőŒœŔŕŖŗŘřŚ" +
             "śŜŝŞşŠšŢţŤťŦŧŨũŪūŬŭŮůŰűŲųŴŵŶŷŸŹźŻżŽž\u1234", 100);
-    
-    // No sets of characters
-    fixture.put("", 0);
     
     // One set of characters
     fixture.put("a", 26);
@@ -127,7 +124,7 @@ public class BruteForceTest {
     for (Map.Entry<String, Integer> entry : fixture.entrySet()) {
       String password = entry.getKey();
       Integer expectedCardinality = entry.getValue();
-      Integer calcCardinality = BruteForce.getBrutForceCardinality(password);
+      Integer calcCardinality = BruteForce.getBrutForceCardinality(new BasicMatch(password));
       Assert.assertEquals(password, expectedCardinality, calcCardinality);
     }
   }

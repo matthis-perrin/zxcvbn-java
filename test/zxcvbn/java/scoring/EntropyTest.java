@@ -16,11 +16,14 @@
 
 package zxcvbn.java.scoring;
 
-import zxcvbn.java.scoring.Entropy;
 import java.util.HashMap;
 import java.util.Map;
 import junit.framework.Assert;
 import org.junit.Test;
+import zxcvbn.java.matching.DigitMatch;
+import zxcvbn.java.matching.RepeatMatch;
+import zxcvbn.java.matching.SequenceMatch;
+import zxcvbn.java.matching.YearMatch;
 
 /**
  *
@@ -57,7 +60,6 @@ public class EntropyTest {
     System.out.println("Test of calculateRepeatEntropy method, of class Entropy");
     
     HashMap<String, Double> fixture = new HashMap<>();
-    fixture.put("", 0d);
     fixture.put("a", 4.700439718141093);
     fixture.put("aaaaaaaaaa", 8.022367813028454);
     fixture.put("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 10.022367813028454);
@@ -78,7 +80,7 @@ public class EntropyTest {
     for (Map.Entry<String, Double> entry : fixture.entrySet()) {
       String password = entry.getKey();
       double expectedEntropy = entry.getValue();
-      double computedEntropy = Entropy.calculateRepeatEntropy(password);
+      double computedEntropy = Entropy.calculateRepeatEntropy(new RepeatMatch(password));
       Assert.assertEquals(password, expectedEntropy, computedEntropy);
     }
   }
@@ -92,7 +94,6 @@ public class EntropyTest {
     System.out.println("Test of calculateSequenceEntropy method, of class Entropy");
     
     HashMap<String, Double> fixtureAsc = new HashMap<>();
-    fixtureAsc.put("", 0d);
     fixtureAsc.put("abcd", 3d);
     fixtureAsc.put("bcde", 6.700439718141093);
     fixtureAsc.put("klmnopqrstuv", 8.285402218862249);
@@ -107,13 +108,12 @@ public class EntropyTest {
     for (Map.Entry<String, Double> entry : fixtureAsc.entrySet()) {
       String password = entry.getKey();
       double expectedEntropy = entry.getValue();
-      double computedEntropy = Entropy.calculateSequenceEntropy(password, true);
+      double computedEntropy = Entropy.calculateSequenceEntropy(new SequenceMatch(password, true));
       Assert.assertEquals(password, expectedEntropy, computedEntropy);
     }
     
     
     HashMap<String, Double> fixtureDesc = new HashMap<>();
-    fixtureDesc.put("", 0d);
     fixtureDesc.put("dcba", 7.700439718141093);
     fixtureDesc.put("edcb", 7.700439718141093);
     fixtureDesc.put("vutsrqponmlk", 9.285402218862249);
@@ -128,7 +128,7 @@ public class EntropyTest {
     for (Map.Entry<String, Double> entry : fixtureDesc.entrySet()) {
       String password = entry.getKey();
       double expectedEntropy = entry.getValue();
-      double computedEntropy = Entropy.calculateSequenceEntropy(password, false);
+      double computedEntropy = Entropy.calculateSequenceEntropy(new SequenceMatch(password, false));
       Assert.assertEquals(password, expectedEntropy, computedEntropy);
     }
   }
@@ -142,7 +142,6 @@ public class EntropyTest {
     System.out.println("Test of calculateDigitsEntropy method, of class Entropy");
     
     HashMap<String, Double> fixture = new HashMap<>();
-    fixture.put("", 0d);
     fixture.put("2", 3.3219280948873626);
     fixture.put("45", 6.643856189774725);
     fixture.put("296", 9.965784284662087);
@@ -158,7 +157,7 @@ public class EntropyTest {
     for (Map.Entry<String, Double> entry : fixture.entrySet()) {
       String password = entry.getKey();
       double expectedEntropy = entry.getValue();
-      double computedEntropy = Entropy.calculateDigitsEntropy(password);
+      double computedEntropy = Entropy.calculateDigitsEntropy(new DigitMatch(password));
       Assert.assertEquals(password, expectedEntropy, computedEntropy);
     }
   }
@@ -185,7 +184,7 @@ public class EntropyTest {
     for (Map.Entry<String, Double> entry : fixture.entrySet()) {
       String password = entry.getKey();
       double expectedEntropy = entry.getValue();
-      double computedEntropy = Entropy.calculateYearEntropy(password);
+      double computedEntropy = Entropy.calculateYearEntropy(new YearMatch(password));
       Assert.assertEquals(password, expectedEntropy, computedEntropy);
     }
   }
