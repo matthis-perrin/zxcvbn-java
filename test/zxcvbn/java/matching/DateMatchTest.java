@@ -52,9 +52,9 @@ public class DateMatchTest {
     // Test the fixture
     for (Map.Entry<DateMatch, Double> entry : fixture.entrySet()) {
       DateMatch match = entry.getKey();
-      double expectedEntropy = entry.getValue();
-      double computedEntropy = match.calculateEntropy();
-      Assert.assertEquals(match.getToken(), expectedEntropy, computedEntropy);
+      double expected = entry.getValue();
+      double computed = match.calculateEntropy();
+      Assert.assertEquals(match.getToken(), expected, computed);
     }
   }
   

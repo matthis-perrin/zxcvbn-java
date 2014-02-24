@@ -57,9 +57,9 @@ public class RepeatMatchTest {
     // Test the fixture
     for (Map.Entry<String, Double> entry : fixture.entrySet()) {
       String password = entry.getKey();
-      double expectedEntropy = entry.getValue();
-      double computedEntropy = new RepeatMatch(password).calculateEntropy();
-      Assert.assertEquals(password, expectedEntropy, computedEntropy);
+      double expected = entry.getValue();
+      double computed = new RepeatMatch(password).calculateEntropy();
+      Assert.assertEquals(password, expected, computed);
     }
   }
   

@@ -35,7 +35,8 @@ public class SequenceMatchTest {
    */
   @Test
   public void testCalculateEntropy() {
-    System.out.println("Test of calculateEntropy method, of class SequenceMatch");
+    System.out.println("Test of calculateEntropy method, "
+                     + "of class SequenceMatch");
     
     HashMap<String, Double> fixtureAsc = new HashMap<>();
     fixtureAsc.put("abcd", 3d);
@@ -51,9 +52,9 @@ public class SequenceMatchTest {
     // Test the asc fixture
     for (Map.Entry<String, Double> entry : fixtureAsc.entrySet()) {
       String password = entry.getKey();
-      double expectedEntropy = entry.getValue();
-      double computedEntropy = new SequenceMatch(password, true).calculateEntropy();
-      Assert.assertEquals(password, expectedEntropy, computedEntropy);
+      double expected = entry.getValue();
+      double computed = new SequenceMatch(password, true).calculateEntropy();
+      Assert.assertEquals(password, expected, computed);
     }
     
     
@@ -71,9 +72,9 @@ public class SequenceMatchTest {
     // Test the asc fixture
     for (Map.Entry<String, Double> entry : fixtureDesc.entrySet()) {
       String password = entry.getKey();
-      double expectedEntropy = entry.getValue();
-      double computedEntropy = new SequenceMatch(password, false).calculateEntropy();
-      Assert.assertEquals(password, expectedEntropy, computedEntropy);
+      double expected = entry.getValue();
+      double computed = new SequenceMatch(password, false).calculateEntropy();
+      Assert.assertEquals(password, expected, computed);
     }
   }
   
