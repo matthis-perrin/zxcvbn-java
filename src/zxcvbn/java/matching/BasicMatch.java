@@ -20,7 +20,7 @@ package zxcvbn.java.matching;
  *
  * @author Matthis Perrin <matthis.perrin at gmail.com>
  */
-public class BasicMatch extends Match {
+public abstract class BasicMatch extends Match {
 
   
   private final String token;
@@ -45,6 +45,26 @@ public class BasicMatch extends Match {
   public String getToken () {
     return token;
   }
+  
+  
+  
+  /**
+   * Calculate the base 2 logarithm of a value
+   * @param value the <code>double</code> we are calculating the log from
+   * @return 
+   */
+  protected static double log2 (double value) {
+    return Math.log(value) / LOG_2;
+  }
+  
+  
+  // Precomputed log values used during etropy calculation
+  protected static final double LOG_2 = Math.log(2d);
+  protected static final double LOG_10 = log2(10d);
+  protected static final double LOG_26 = log2(26d);
+  protected static final double LOG_119 = log2(119d);
+  protected static final double LOG_37200 = log2(37200d);
+  protected static final double LOG_44268 = log2(44268d);
   
   
 }

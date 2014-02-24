@@ -16,6 +16,8 @@
 
 package zxcvbn.java.matching;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Matthis Perrin <matthis.perrin at gmail.com>
@@ -27,6 +29,23 @@ public abstract class Match {
    * @return the <code>String</code> value of the <code>Match</code>
    */
   public abstract String getToken ();
+  
+  
+  /**
+   * Calculate the entropy for the current match
+   * @return a <code>String</code> representing the entropy of the current match
+   */
+  public abstract double calculateEntropy ();
+  
+  
+  /**
+   * Take a password and extract all the matching sub-patterns.
+   * @param password the password as a <code>String</code>
+   * @return a collection of all the matching sub-patterns
+   */
+  public static ArrayList<Match> match (String password) {
+    return new ArrayList<>();
+  }
   
   
 }

@@ -35,7 +35,14 @@ public class DigitMatch extends BasicMatch {
     super(match);
     this.length = match.length();
   }
+  
+  
+  @Override
+  public double calculateEntropy () {
+    return log2(Math.pow(10, getLength()));
+  }
 
+  
   
   /**
    * @return the length of the match

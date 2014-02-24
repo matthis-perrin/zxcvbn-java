@@ -20,7 +20,6 @@ import java.util.HashMap;
 import java.util.Map;
 import junit.framework.Assert;
 import org.junit.Test;
-import zxcvbn.java.matching.BasicMatch;
 
 /**
  *
@@ -124,7 +123,7 @@ public class BruteForceTest {
     for (Map.Entry<String, Integer> entry : fixture.entrySet()) {
       String password = entry.getKey();
       Integer expectedCardinality = entry.getValue();
-      Integer calcCardinality = BruteForce.getBrutForceCardinality(new BasicMatch(password));
+      Integer calcCardinality = BruteForce.getBrutForceCardinality(password);
       Assert.assertEquals(password, expectedCardinality, calcCardinality);
     }
   }

@@ -41,6 +41,37 @@ public class SequenceMatch extends BasicMatch {
     this.length = match.length();
     this.asc = asc;
   }
+  
+  
+  @Override
+  public double calculateEntropy () {
+  char firstChar = getFirstCharacter();
+    double baseEntropy;
+    
+    // A sequence that starts with a 'a' or a '1' is very weak
+    if (firstChar == 'a' || firstChar == '1') {
+      baseEntropy = 1d;
+    }
+    // Digit sequence don't have a lot of entropy
+    else if (Character.isDigit(firstChar)) {
+      baseEntropy = LOG_10;
+    }
+    // Alpha sequence have more entropy
+    else if (Character.isLowerCase(firstChar)) {
+      baseEntropy = LOG_26;
+    }
+    // We give an extra bit of entropy for upper case sequence
+    else {
+      baseEntropy = LOG_26 + 1d;
+    }
+    
+    // An other extra bit of entropy if the sequence is descending
+    if (!isAscending()) {
+      baseEntropy++;
+    }
+    
+    return baseEntropy + log2(getLength());
+  }
 
   
   

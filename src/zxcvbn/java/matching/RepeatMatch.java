@@ -16,6 +16,8 @@
 
 package zxcvbn.java.matching;
 
+import zxcvbn.java.scoring.BruteForce;
+
 /**
  *
  * @author Matthis Perrin <matthis.perrin at gmail.com>
@@ -36,6 +38,13 @@ public class RepeatMatch extends BasicMatch {
     super(match);
     this.character = match.charAt(0);
     this.repeat = match.length();
+  }
+  
+  
+  @Override
+  public double calculateEntropy () {
+    int cardinality = BruteForce.getBrutForceCardinality(getToken());
+    return Math.max(0, log2(cardinality * getRepeat()));
   }
 
   

@@ -46,6 +46,29 @@ public class DateMatch extends BasicMatch {
     this.year = year;
     this.separator = separator;
   }
+  
+  
+  @Override
+  public double calculateEntropy () {
+    double entropy;
+    
+    // Two digits year
+    if (getYear() < 100) {
+      entropy = LOG_37200; // 31 * 12 * 100
+    }
+    // Four digits year
+    else {
+      entropy = LOG_44268; // 31 * 12 * 119
+    }
+    
+    // Add two bits of entropy if there is a separator
+    if (!getSeparator().isEmpty()) {
+      entropy += 2;
+    }
+    
+    return entropy;
+  }
+  
 
   
   /**

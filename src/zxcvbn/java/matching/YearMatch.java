@@ -33,4 +33,10 @@ public class YearMatch extends BasicMatch {
   }
   
   
+  @Override
+  public double calculateEntropy () {
+    return LOG_119;
+  }
+  
+  
 }
