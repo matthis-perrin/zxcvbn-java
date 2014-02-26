@@ -62,7 +62,7 @@ public class DateMatch extends BasicMatch {
     }
     
     // Add two bits of entropy if there is a separator
-    if (!getSeparator().isEmpty()) {
+    if (!(separator == null || separator.isEmpty())) {
       entropy += 2;
     }
     

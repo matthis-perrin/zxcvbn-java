@@ -38,11 +38,11 @@ public class DateMatchTest {
     System.out.println("Test of calculateEntropy method, of class DateMatch");
     
     HashMap<DateMatch, Double> fixture = new HashMap<>();
-    fixture.put(new DateMatch(0, 0, 1990, ""), 15.433976574415976);
-    fixture.put(new DateMatch(1, 0, 2012, ""), 15.433976574415976);
-    fixture.put(new DateMatch(12, 12, 1900, ""), 15.433976574415976);
-    fixture.put(new DateMatch(23, 10, 2014, ""), 15.433976574415976);
-    fixture.put(new DateMatch(10, 23, 2014, ""), 15.433976574415976);
+    fixture.put(new DateMatch(0, 0, 1990, null), 15.433976574415976);
+    fixture.put(new DateMatch(1, 0, 2012, null), 15.433976574415976);
+    fixture.put(new DateMatch(12, 12, 1900, null), 15.433976574415976);
+    fixture.put(new DateMatch(23, 10, 2014, null), 15.433976574415976);
+    fixture.put(new DateMatch(10, 23, 2014, null), 15.433976574415976);
     fixture.put(new DateMatch(0, 0, 1990, "."), 17.433976574415976);
     fixture.put(new DateMatch(1, 0, 2012, "/"), 17.433976574415976);
     fixture.put(new DateMatch(12, 12, 1900, "-"), 17.433976574415976);
