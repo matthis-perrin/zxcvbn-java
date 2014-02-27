@@ -67,4 +67,21 @@ public abstract class BasicMatch extends Match {
   protected static final double LOG_44268 = log2(44268d);
   
   
+  /**
+   * Calculate binomial coefficients (the number of possible "choose k among n")
+   * @param n the total size of the set
+   * @param k the size of the selection
+   * @return the binomial coefficient
+   */
+  protected static final long nCk (int n, int k) {
+    if (k > n) return 0;
+    long result = 1;
+    for (int i = 1; i <= k; i++) {
+      result *= n--;
+      result /= i;
+    }
+    return result;
+  }
+  
+  
 }

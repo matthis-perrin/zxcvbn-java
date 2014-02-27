@@ -89,6 +89,21 @@ public class BasicMatchTest {
     @Override
     public double calculateEntropy() { return 0; }
   }
+
+  
+  /**
+   * Test of nCk method, of class BasicMatch.
+   */
+  @Test
+  public void testNCk() {
+    System.out.println("Test of nCk method, of class BasicMatch.");
+    Assert.assertEquals(0l, BasicMatch.nCk(2, 3));
+    Assert.assertEquals(1l, BasicMatch.nCk(10, 0));
+    Assert.assertEquals(120l, BasicMatch.nCk(10, 3));
+    Assert.assertEquals(120l, BasicMatch.nCk(10, 7));
+    Assert.assertEquals(1646492110120l, BasicMatch.nCk(80, 10));
+    Assert.assertEquals(26252279997448736l, BasicMatch.nCk(58, 27));
+  }
   
   
 }
