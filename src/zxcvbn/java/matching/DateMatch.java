@@ -48,6 +48,10 @@ public class DateMatch extends BasicMatch {
   }
   
   
+  /**
+   * Calculate the entropy for the current match
+   * @return a <code>String</code> representing the entropy of the current match
+   */
   @Override
   public double calculateEntropy () {
     double entropy;

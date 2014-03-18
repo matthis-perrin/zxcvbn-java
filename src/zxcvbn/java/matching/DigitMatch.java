@@ -37,6 +37,10 @@ public class DigitMatch extends BasicMatch {
   }
   
   
+  /**
+   * Calculate the entropy for the current match
+   * @return a <code>String</code> representing the entropy of the current match
+   */
   @Override
   public double calculateEntropy () {
     return log2(Math.pow(10, getLength()));
