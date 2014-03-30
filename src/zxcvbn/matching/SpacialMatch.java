@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package zxcvbn.java.matching;
+package zxcvbn.matching;
 
-import zxcvbn.java.resources.AdjacencyGraph;
+import zxcvbn.resources.AdjacencyGraph;
 
 /**
  *

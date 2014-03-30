@@ -14,26 +14,30 @@
  * limitations under the License.
  */
 
-package zxcvbn.java.matching;
+package zxcvbn.matching;
+
+import zxcvbn.scoring.BruteForce;
 
 /**
  *
  * @author Matthis Perrin <matthis.perrin at gmail.com>
  */
-public class DigitMatch extends BasicMatch {
+public class RepeatMatch extends BasicMatch {
   
   
-  private final int length;
+  private final char character;
+  private final int repeat;
   
   
   /**
-   * Create a new <code>DigitMatch</code> which is a <code>String</code>
-   * containing only digits
-   * @param match a <code>String</code> containing only digits
+   * Create a new <code>RepeatMatch</code> which is a <code>String</code>
+   * repeating the same <code>char</code>
+   * @param match a <code>String</code> repeating a <code>char</code>
    */
-  public DigitMatch (String match) {
+  public RepeatMatch (String match) {
     super(match);
-    this.length = match.length();
+    this.character = match.charAt(0);
+    this.repeat = match.length();
   }
   
   
@@ -43,16 +47,25 @@ public class DigitMatch extends BasicMatch {
    */
   @Override
   public double calculateEntropy () {
-    return log2(Math.pow(10, getLength()));
+    int cardinality = BruteForce.getBrutForceCardinality(getToken());
+    return Math.max(0, log2(cardinality * getRepeat()));
   }
 
   
   
   /**
-   * @return the length of the match
+   * @return the character that is repeated in the token
    */
-  public int getLength () {
-    return length;
+  public char getCharacter () {
+    return character;
+  }
+
+  
+  /**
+   * @return how many time the character is repeating in the token
+   */
+  public int getRepeat () {
+    return repeat;
   }
   
   

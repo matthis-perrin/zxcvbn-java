@@ -14,32 +14,37 @@
  * limitations under the License.
  */
 
-package zxcvbn.java.matching;
+package zxcvbn.matching;
+
+import java.util.ArrayList;
 
 /**
  *
  * @author Matthis Perrin <matthis.perrin at gmail.com>
  */
-public class YearMatch extends BasicMatch {
-
+public abstract class Match {
+  
   
   /**
-   * Create a new <code>YearMatch</code> which is a <code>String</code>
-   * that represents a year.
-   * @param match a <code>String</code> representing a year
+   * @return the <code>String</code> value of the <code>Match</code>
    */
-  public YearMatch (String match) {
-    super(match);
-  }
+  public abstract String getToken ();
   
   
   /**
    * Calculate the entropy for the current match
    * @return a <code>String</code> representing the entropy of the current match
    */
-  @Override
-  public double calculateEntropy () {
-    return LOG_119;
+  public abstract double calculateEntropy ();
+  
+  
+  /**
+   * Take a password and extract all the matching sub-patterns.
+   * @param password the password as a <code>String</code>
+   * @return a collection of all the matching sub-patterns
+   */
+  public static ArrayList<Match> match (String password) {
+    return new ArrayList<>();
   }
   
   

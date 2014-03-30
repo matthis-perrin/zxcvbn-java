@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-package zxcvbn.java.matching;
+package zxcvbn.matching;
 
+import zxcvbn.matching.YearMatch;
 import java.util.HashMap;
 import java.util.Map;
 import junit.framework.Assert;
@@ -25,35 +26,34 @@ import org.junit.Test;
  *
  * @author Matthis Perrin <matthis.perrin at gmail.com>
  */
-public class DigitMatchTest {
+public class YearMatchTest {
   
-  public DigitMatchTest() {
+  public YearMatchTest() {
   }
 
   /**
-   * Test of calculateEntropy method, of class DigitMatch.
+   * Test of calculateEntropy method, of class YearMatch.
    */
   @Test
   public void testCalculateEntropy() {
-    System.out.println("Test of calculateEntropy method, of class DigitMatch");
+    System.out.println("Test of calculateEntropy method, of class YearMatch");
     
     HashMap<String, Double> fixture = new HashMap<>();
-    fixture.put("2", 3.3219280948873626);
-    fixture.put("45", 6.643856189774725);
-    fixture.put("296", 9.965784284662087);
-    fixture.put("2954", 13.28771237954945);
-    fixture.put("01678", 16.609640474436812);
-    fixture.put("394870", 19.931568569324174);
-    fixture.put("9486034", 23.25349666421154);
-    fixture.put("10037235", 26.5754247590989);
-    fixture.put("923874291", 29.897352853986263);
-    fixture.put("9041957412", 33.219280948873624);
+    fixture.put("1900", 6.894817763307944);
+    fixture.put("1982", 6.894817763307944);
+    fixture.put("1990", 6.894817763307944);
+    fixture.put("1993", 6.894817763307944);
+    fixture.put("2000", 6.894817763307944);
+    fixture.put("2007", 6.894817763307944);
+    fixture.put("2012", 6.894817763307944);
+    fixture.put("2016", 6.894817763307944);
+    fixture.put("2019", 6.894817763307944);
     
     // Test the fixture
     for (Map.Entry<String, Double> entry : fixture.entrySet()) {
       String password = entry.getKey();
       double expected = entry.getValue();
-      double computed = new DigitMatch(password).calculateEntropy();
+      double computed = new YearMatch(password).calculateEntropy();
       Assert.assertEquals(password, expected, computed);
     }
   }

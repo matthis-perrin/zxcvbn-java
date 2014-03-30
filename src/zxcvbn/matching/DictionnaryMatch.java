@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package zxcvbn.java.matching;
+package zxcvbn.matching;
 
 import java.util.HashMap;
 import java.util.Map;

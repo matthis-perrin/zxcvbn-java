@@ -14,30 +14,22 @@
  * limitations under the License.
  */
 
-package zxcvbn.java.matching;
-
-import zxcvbn.java.scoring.BruteForce;
+package zxcvbn.matching;
 
 /**
  *
  * @author Matthis Perrin <matthis.perrin at gmail.com>
  */
-public class RepeatMatch extends BasicMatch {
-  
-  
-  private final char character;
-  private final int repeat;
-  
+public class YearMatch extends BasicMatch {
+
   
   /**
-   * Create a new <code>RepeatMatch</code> which is a <code>String</code>
-   * repeating the same <code>char</code>
-   * @param match a <code>String</code> repeating a <code>char</code>
+   * Create a new <code>YearMatch</code> which is a <code>String</code>
+   * that represents a year.
+   * @param match a <code>String</code> representing a year
    */
-  public RepeatMatch (String match) {
+  public YearMatch (String match) {
     super(match);
-    this.character = match.charAt(0);
-    this.repeat = match.length();
   }
   
   
@@ -47,25 +39,7 @@ public class RepeatMatch extends BasicMatch {
    */
   @Override
   public double calculateEntropy () {
-    int cardinality = BruteForce.getBrutForceCardinality(getToken());
-    return Math.max(0, log2(cardinality * getRepeat()));
-  }
-
-  
-  
-  /**
-   * @return the character that is repeated in the token
-   */
-  public char getCharacter () {
-    return character;
-  }
-
-  
-  /**
-   * @return how many time the character is repeating in the token
-   */
-  public int getRepeat () {
-    return repeat;
+    return LOG_119;
   }
   
   

@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-package zxcvbn.java.scoring;
+package zxcvbn.scoring;
 
+import zxcvbn.scoring.BruteForce;
 import java.util.HashMap;
 import java.util.Map;
 import junit.framework.Assert;

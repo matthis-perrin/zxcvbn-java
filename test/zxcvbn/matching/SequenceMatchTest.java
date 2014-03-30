@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-package zxcvbn.java.matching;
+package zxcvbn.matching;
 
+import zxcvbn.matching.SequenceMatch;
 import java.util.HashMap;
 import java.util.Map;
 import junit.framework.Assert;

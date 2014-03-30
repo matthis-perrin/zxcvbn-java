@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-package zxcvbn.java.matching;
+package zxcvbn.matching;
 
+import zxcvbn.matching.BasicMatch;
 import junit.framework.Assert;
 import org.junit.Rule;
 import org.junit.Test;

@@ -14,37 +14,45 @@
  * limitations under the License.
  */
 
-package zxcvbn.java.matching;
-
-import java.util.ArrayList;
+package zxcvbn.matching;
 
 /**
  *
  * @author Matthis Perrin <matthis.perrin at gmail.com>
  */
-public abstract class Match {
+public class DigitMatch extends BasicMatch {
+  
+  
+  private final int length;
   
   
   /**
-   * @return the <code>String</code> value of the <code>Match</code>
+   * Create a new <code>DigitMatch</code> which is a <code>String</code>
+   * containing only digits
+   * @param match a <code>String</code> containing only digits
    */
-  public abstract String getToken ();
+  public DigitMatch (String match) {
+    super(match);
+    this.length = match.length();
+  }
   
   
   /**
    * Calculate the entropy for the current match
    * @return a <code>String</code> representing the entropy of the current match
    */
-  public abstract double calculateEntropy ();
+  @Override
+  public double calculateEntropy () {
+    return log2(Math.pow(10, getLength()));
+  }
+
   
   
   /**
-   * Take a password and extract all the matching sub-patterns.
-   * @param password the password as a <code>String</code>
-   * @return a collection of all the matching sub-patterns
+   * @return the length of the match
    */
-  public static ArrayList<Match> match (String password) {
-    return new ArrayList<>();
+  public int getLength () {
+    return length;
   }
   
   

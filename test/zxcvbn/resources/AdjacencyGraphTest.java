@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-package zxcvbn.java.resources;
+package zxcvbn.resources;
 
+import zxcvbn.resources.AdjacencyGraph;
 import java.util.HashMap;
 import java.util.Map;
 import junit.framework.Assert;
