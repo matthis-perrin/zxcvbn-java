@@ -17,6 +17,7 @@
 package zxcvbn.resources;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
@@ -26,8 +27,8 @@ import java.util.HashMap;
  * @author Matthis Perrin <matthis.perrin at gmail.com>
  */
 public class Dictionaries {
-  
-  
+
+
   /**
    * Read a resource file with a list of entries (sorted by frequency) and use
    * it to create a ranked dictionary.
@@ -37,7 +38,7 @@ public class Dictionaries {
    */
   private static HashMap<String, Integer> loadFile (String fileName) {
     HashMap<String, Integer> ranked = new HashMap<>();
-    
+
     try {
       String path = "dictionaries/" + fileName;
       InputStream is = Dictionaries.class.getResourceAsStream(path);
@@ -49,38 +50,52 @@ public class Dictionaries {
         ranked.put(line, i++);
       }
     }
-    catch (Exception e) {
+    catch (IOException e) {
       System.out.println("Error while reading " + fileName);
     }
-    
+
     return ranked;
   }
-  
-  
+
+
+
   /**
    * Ranked dictionary of common passwords
    */
-  public static HashMap<String, Integer> passwords = loadFile("passwords.txt");
-  
+  public static final HashMap<String, Integer> passwords = loadFile("passwords.txt");
+
   /**
    * Ranked dictionary of common male names
    */
-  public static HashMap<String, Integer> maleNames = loadFile("male-names.txt");
-  
+  public static final HashMap<String, Integer> maleNames = loadFile("male-names.txt");
+
   /**
    * Ranked dictionary of common female names
    */
-  public static HashMap<String, Integer> femaleNames = loadFile("female-names.txt");
-  
+  public static final HashMap<String, Integer> femaleNames = loadFile("female-names.txt");
+
   /**
    * Ranked dictionary of common surnames
    */
-  public static HashMap<String, Integer> surnames = loadFile("surnames.txt");
-  
+  public static final HashMap<String, Integer> surnames = loadFile("surnames.txt");
+
   /**
    * Ranked dictionary of common English word
    */
-  public static HashMap<String, Integer> english = loadFile("english.txt");
-  
-  
+  public static final HashMap<String, Integer> english = loadFile("english.txt");
+
+
+  /**
+   * List all the ranked dictionaries
+   */
+  public static HashMap<String, Integer>[] dictionaries =
+          (HashMap<String, Integer>[]) new Object[] {
+    passwords,
+    maleNames,
+    femaleNames,
+    surnames,
+    english
+  };
+
+
 }
