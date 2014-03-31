@@ -16,8 +16,7 @@
 
 package zxcvbn.matching;
 
-import zxcvbn.matching.DictionnaryMatch;
-import java.util.HashMap;
+import java.util.ArrayList;
 import junit.framework.Assert;
 import org.junit.Test;
 
@@ -35,7 +34,7 @@ public class DictionnaryMatchTest {
   public void testCalculateEntropy() {
     System.out.println("Test of calculateEntropy method, of class DictionnaryMatch");
   
-    HashMap<Character, Character> sub = new HashMap<>();
+    ArrayList<Character[]> sub = new ArrayList<Character[]>();
     double entropy;
     
     DictionnaryMatch match = new DictionnaryMatch("zxcv", 1028, false, sub);
@@ -63,62 +62,62 @@ public class DictionnaryMatchTest {
     Assert.assertEquals(match.getToken(), 12.81478271506211d, entropy);
     sub.clear();
 
-    sub.put('4', 'a');
+    sub.add(new Character[] {'4', 'a'});
     match = new DictionnaryMatch("ER4", 1461, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 12.5127404628035d, entropy);
     sub.clear();
 
-    sub.put('4', 'a');
+    sub.add(new Character[] {'4', 'a'});
     match = new DictionnaryMatch("4", 5, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 3.321928094887362d, entropy);
     sub.clear();
 
-    sub.put('3', 'e');
-    sub.put('4', 'a');
+    sub.add(new Character[] {'3', 'e'});
+    sub.add(new Character[] {'4', 'a'});
     match = new DictionnaryMatch("R43", 716, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 11.483815777264256d, entropy);
     sub.clear();
 
-    sub.put('@', 'a');
+    sub.add(new Character[] {'@', 'a'});
     match = new DictionnaryMatch("@", 5, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 3.321928094887362d, entropy);
     sub.clear();
 
-    sub.put('!', 'i');
+    sub.add(new Character[] {'!', 'i'});
     match = new DictionnaryMatch("!", 2, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 2d, entropy);
     sub.clear();
 
-    sub.put('!', 'i');
+    sub.add(new Character[] {'!', 'i'});
     match = new DictionnaryMatch("!", 2, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 2d, entropy);
     sub.clear();
 
-    sub.put('0', 'o');
+    sub.add(new Character[] {'0', 'o'});
     match = new DictionnaryMatch("Tr0u", 28225, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 16.784685960547726d, entropy);
     sub.clear();
 
-    sub.put('4', 'a');
+    sub.add(new Character[] {'4', 'a'});
     match = new DictionnaryMatch("4", 5, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 3.321928094887362d, entropy);
     sub.clear();
 
-    sub.put('4', 'a');
+    sub.add(new Character[] {'4', 'a'});
     match = new DictionnaryMatch("b4d", 214, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 8.741466986401146d, entropy);
     sub.clear();
 
-    sub.put('4', 'a');
+    sub.add(new Character[] {'4', 'a'});
     match = new DictionnaryMatch("4do", 9947, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 14.280045761300384d, entropy);
@@ -129,14 +128,14 @@ public class DictionnaryMatchTest {
     Assert.assertEquals(match.getToken(), 4.584962500721157d, entropy);
     sub.clear();
 
-    sub.put('0', 'o');
-    sub.put('4', 'a');
+    sub.add(new Character[] {'0', 'o'});
+    sub.add(new Character[] {'4', 'a'});
     match = new DictionnaryMatch("Tr0ub4dour", 20111, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 17.29569719959013d, entropy);
     sub.clear();
 
-    sub.put('4', 'a');
+    sub.add(new Character[] {'4', 'a'});
     match = new DictionnaryMatch("b4dour", 31006, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 15.920259799328303d, entropy);
@@ -287,73 +286,73 @@ public class DictionnaryMatchTest {
     Assert.assertEquals(match.getToken(), 13.574593527337612d, entropy);
     sub.clear();
 
-    sub.put('0', 'o');
+    sub.add(new Character[] {'0', 'o'});
     match = new DictionnaryMatch("th0r", 1650, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 11.688250309133178d, entropy);
     sub.clear();
 
-    sub.put('0', 'o');
+    sub.add(new Character[] {'0', 'o'});
     match = new DictionnaryMatch("th0r", 1650, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 11.688250309133178d, entropy);
     sub.clear();
 
-    sub.put('0', 'o');
+    sub.add(new Character[] {'0', 'o'});
     match = new DictionnaryMatch("th0r", 1650, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 11.688250309133178d, entropy);
     sub.clear();
 
-    sub.put('0', 'o');
+    sub.add(new Character[] {'0', 'o'});
     match = new DictionnaryMatch("0r", 92, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 7.523561956057013d, entropy);
     sub.clear();
 
-    sub.put('0', 'o');
+    sub.add(new Character[] {'0', 'o'});
     match = new DictionnaryMatch("0r", 92, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 7.523561956057013d, entropy);
     sub.clear();
 
-    sub.put('0', 'o');
+    sub.add(new Character[] {'0', 'o'});
     match = new DictionnaryMatch("0r", 92, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 7.523561956057013d, entropy);
     sub.clear();
 
-    sub.put('0', 'o');
+    sub.add(new Character[] {'0', 'o'});
     match = new DictionnaryMatch("h0rs", 7646, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 13.900489484834651d, entropy);
     sub.clear();
 
-    sub.put('0', 'o');
+    sub.add(new Character[] {'0', 'o'});
     match = new DictionnaryMatch("h0rs", 7646, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 13.900489484834651d, entropy);
     sub.clear();
 
-    sub.put('0', 'o');
+    sub.add(new Character[] {'0', 'o'});
     match = new DictionnaryMatch("h0rs", 7646, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 13.900489484834651d, entropy);
     sub.clear();
 
-    sub.put('0', 'o');
+    sub.add(new Character[] {'0', 'o'});
     match = new DictionnaryMatch("h0rse", 494, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 9.948367231584678d, entropy);
     sub.clear();
 
-    sub.put('0', 'o');
+    sub.add(new Character[] {'0', 'o'});
     match = new DictionnaryMatch("h0rse", 494, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 9.948367231584678d, entropy);
     sub.clear();
 
-    sub.put('0', 'o');
+    sub.add(new Character[] {'0', 'o'});
     match = new DictionnaryMatch("h0rse", 494, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 9.948367231584678d, entropy);
@@ -364,72 +363,72 @@ public class DictionnaryMatchTest {
     Assert.assertEquals(match.getToken(), 2.321928094887362d, entropy);
     sub.clear();
 
-    sub.put('+', 't');
+    sub.add(new Character[] {'+', 't'});
     match = new DictionnaryMatch("ba+", 2195, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 12.100005224422722d, entropy);
     sub.clear();
 
-    sub.put('+', 't');
+    sub.add(new Character[] {'+', 't'});
     match = new DictionnaryMatch("a+", 59, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 6.882643049361842d, entropy);
     sub.clear();
 
-    sub.put('+', 't');
+    sub.add(new Character[] {'+', 't'});
     match = new DictionnaryMatch("ba++", 8998, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 14.135388651579046d, entropy);
     sub.clear();
 
-    sub.put('+', 't');
+    sub.add(new Character[] {'+', 't'});
     match = new DictionnaryMatch("ba++e", 27737, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 15.759524135517584d, entropy);
     sub.clear();
 
-    sub.put('+', 't');
+    sub.add(new Character[] {'+', 't'});
     match = new DictionnaryMatch("ba++er", 9383, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 14.195833549955587d, entropy);
     sub.clear();
 
-    sub.put('+', 't');
+    sub.add(new Character[] {'+', 't'});
     match = new DictionnaryMatch("+er", 8915, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 14.122019082512358d, entropy);
     sub.clear();
 
-    sub.put('+', 't');
+    sub.add(new Character[] {'+', 't'});
     match = new DictionnaryMatch("ba++ery", 3845, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 12.90876788284919d, entropy);
     sub.clear();
 
-    sub.put('0', 'o');
-    sub.put('2', 'z');
+    sub.add(new Character[] {'0', 'o'});
+    sub.add(new Character[] {'2', 'z'});
     match = new DictionnaryMatch("200", 2892, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 12.497851836951119d, entropy);
     sub.clear();
 
-    sub.put('0', 'o');
-    sub.put('2', 'z');
+    sub.add(new Character[] {'0', 'o'});
+    sub.add(new Character[] {'2', 'z'});
     match = new DictionnaryMatch("200", 2892, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 12.497851836951119d, entropy);
     sub.clear();
 
-    sub.put('0', 'o');
-    sub.put('2', 'z');
+    sub.add(new Character[] {'0', 'o'});
+    sub.add(new Character[] {'2', 'z'});
     match = new DictionnaryMatch("200", 2892, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 12.497851836951119d, entropy);
     sub.clear();
 
-    sub.put('0', 'o');
-    sub.put('2', 'z');
-    sub.put('7', 't');
+    sub.add(new Character[] {'0', 'o'});
+    sub.add(new Character[] {'2', 'z'});
+    sub.add(new Character[] {'7', 't'});
     match = new DictionnaryMatch("2007", 23656, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 16.11488102884148d, entropy);
@@ -450,49 +449,49 @@ public class DictionnaryMatchTest {
     Assert.assertEquals(match.getToken(), 13.779924501967908d, entropy);
     sub.clear();
 
-    sub.put('$', 's');
+    sub.add(new Character[] {'$', 's'});
     match = new DictionnaryMatch("staple$", 1517, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 12.151967870968189d, entropy);
     sub.clear();
 
-    sub.put('$', 's');
+    sub.add(new Character[] {'$', 's'});
     match = new DictionnaryMatch("staple$", 1517, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 12.151967870968189d, entropy);
     sub.clear();
 
-    sub.put('$', 's');
+    sub.add(new Character[] {'$', 's'});
     match = new DictionnaryMatch("staple$", 1517, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 12.151967870968189d, entropy);
     sub.clear();
 
-    sub.put('$', 's');
+    sub.add(new Character[] {'$', 's'});
     match = new DictionnaryMatch("le$", 739, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 10.52943055414615d, entropy);
     sub.clear();
 
-    sub.put('$', 's');
+    sub.add(new Character[] {'$', 's'});
     match = new DictionnaryMatch("le$", 739, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 10.52943055414615d, entropy);
     sub.clear();
 
-    sub.put('$', 's');
+    sub.add(new Character[] {'$', 's'});
     match = new DictionnaryMatch("le$", 739, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 10.52943055414615d, entropy);
     sub.clear();
 
-    sub.put('0', 'o');
+    sub.add(new Character[] {'0', 'o'});
     match = new DictionnaryMatch("D0", 24, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 6.584962500721157d, entropy);
     sub.clear();
 
-    sub.put('0', 'o');
+    sub.add(new Character[] {'0', 'o'});
     match = new DictionnaryMatch("D0g", 706, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 11.46352437327118d, entropy);
@@ -543,22 +542,22 @@ public class DictionnaryMatchTest {
     Assert.assertEquals(match.getToken(), 1d, entropy);
     sub.clear();
 
-    sub.put('8', 'b');
-    sub.put('9', 'g');
+    sub.add(new Character[] {'8', 'b'});
+    sub.add(new Character[] {'9', 'g'});
     match = new DictionnaryMatch("k98", 7035, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 13.780334708123895d, entropy);
     sub.clear();
 
-    sub.put('8', 'b');
-    sub.put('9', 'g');
+    sub.add(new Character[] {'8', 'b'});
+    sub.add(new Character[] {'9', 'g'});
     match = new DictionnaryMatch("k98", 7035, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 13.780334708123895d, entropy);
     sub.clear();
 
-    sub.put('8', 'b');
-    sub.put('9', 'g');
+    sub.add(new Character[] {'8', 'b'});
+    sub.add(new Character[] {'9', 'g'});
     match = new DictionnaryMatch("k98", 7035, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 13.780334708123895d, entropy);
@@ -579,37 +578,37 @@ public class DictionnaryMatchTest {
     Assert.assertEquals(match.getToken(), 8.03342300153745d, entropy);
     sub.clear();
 
-    sub.put('4', 'a');
+    sub.add(new Character[] {'4', 'a'});
     match = new DictionnaryMatch("4", 5, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 3.321928094887362d, entropy);
     sub.clear();
 
-    sub.put('4', 'a');
+    sub.add(new Character[] {'4', 'a'});
     match = new DictionnaryMatch("4", 5, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 3.321928094887362d, entropy);
     sub.clear();
 
-    sub.put('4', 'a');
+    sub.add(new Character[] {'4', 'a'});
     match = new DictionnaryMatch("4", 5, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 3.321928094887362d, entropy);
     sub.clear();
 
-    sub.put('4', 'a');
+    sub.add(new Character[] {'4', 'a'});
     match = new DictionnaryMatch("4", 5, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 3.321928094887362d, entropy);
     sub.clear();
 
-    sub.put('4', 'a');
+    sub.add(new Character[] {'4', 'a'});
     match = new DictionnaryMatch("4", 5, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 3.321928094887362d, entropy);
     sub.clear();
 
-    sub.put('4', 'a');
+    sub.add(new Character[] {'4', 'a'});
     match = new DictionnaryMatch("4", 5, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 3.321928094887362d, entropy);
@@ -620,37 +619,37 @@ public class DictionnaryMatchTest {
     Assert.assertEquals(match.getToken(), 9.896332403909941d, entropy);
     sub.clear();
 
-    sub.put('2', 'z');
-    sub.put('3', 'e');
-    sub.put('4', 'a');
-    sub.put('5', 's');
+    sub.add(new Character[] {'2', 'z'});
+    sub.add(new Character[] {'3', 'e'});
+    sub.add(new Character[] {'4', 'a'});
+    sub.add(new Character[] {'5', 's'});
     match = new DictionnaryMatch("5432", 6209, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 14.600145216358667d, entropy);
     sub.clear();
 
-    sub.put('2', 'z');
-    sub.put('3', 'e');
-    sub.put('4', 'a');
-    sub.put('5', 's');
+    sub.add(new Character[] {'2', 'z'});
+    sub.add(new Character[] {'3', 'e'});
+    sub.add(new Character[] {'4', 'a'});
+    sub.add(new Character[] {'5', 's'});
     match = new DictionnaryMatch("5432", 6209, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 14.600145216358667d, entropy);
     sub.clear();
 
-    sub.put('2', 'z');
-    sub.put('3', 'e');
-    sub.put('4', 'a');
-    sub.put('5', 's');
+    sub.add(new Character[] {'2', 'z'});
+    sub.add(new Character[] {'3', 'e'});
+    sub.add(new Character[] {'4', 'a'});
+    sub.add(new Character[] {'5', 's'});
     match = new DictionnaryMatch("5432", 6209, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 14.600145216358667d, entropy);
     sub.clear();
 
-    sub.put('2', 'z');
-    sub.put('3', 'e');
-    sub.put('4', 'a');
-    sub.put('5', 's');
+    sub.add(new Character[] {'2', 'z'});
+    sub.add(new Character[] {'3', 'e'});
+    sub.add(new Character[] {'4', 'a'});
+    sub.add(new Character[] {'5', 's'});
     match = new DictionnaryMatch("5432", 6209, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 14.600145216358667d, entropy);
@@ -661,19 +660,19 @@ public class DictionnaryMatchTest {
     Assert.assertEquals(match.getToken(), 12.617008227651965d, entropy);
     sub.clear();
 
-    sub.put('2', 'z');
-    sub.put('3', 'e');
-    sub.put('4', 'a');
-    sub.put('5', 's');
+    sub.add(new Character[] {'2', 'z'});
+    sub.add(new Character[] {'3', 'e'});
+    sub.add(new Character[] {'4', 'a'});
+    sub.add(new Character[] {'5', 's'});
     match = new DictionnaryMatch("5432", 6209, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 14.600145216358667d, entropy);
     sub.clear();
 
-    sub.put('2', 'z');
-    sub.put('3', 'e');
-    sub.put('4', 'a');
-    sub.put('5', 's');
+    sub.add(new Character[] {'2', 'z'});
+    sub.add(new Character[] {'3', 'e'});
+    sub.add(new Character[] {'4', 'a'});
+    sub.add(new Character[] {'5', 's'});
     match = new DictionnaryMatch("5432", 6209, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 14.600145216358667d, entropy);
@@ -709,25 +708,25 @@ public class DictionnaryMatchTest {
     Assert.assertEquals(match.getToken(), 8.839203788096945d, entropy);
     sub.clear();
 
-    sub.put('1', 'i');
+    sub.add(new Character[] {'1', 'i'});
     match = new DictionnaryMatch("1", 2, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 2d, entropy);
     sub.clear();
 
-    sub.put('1', 'i');
+    sub.add(new Character[] {'1', 'i'});
     match = new DictionnaryMatch("1", 2, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 2d, entropy);
     sub.clear();
 
-    sub.put('1', 'i');
+    sub.add(new Character[] {'1', 'i'});
     match = new DictionnaryMatch("1", 2, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 2d, entropy);
     sub.clear();
 
-    sub.put('1', 'i');
+    sub.add(new Character[] {'1', 'i'});
     match = new DictionnaryMatch("1", 2, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 2d, entropy);
@@ -783,39 +782,39 @@ public class DictionnaryMatchTest {
     Assert.assertEquals(match.getToken(), 5.392317422778761d, entropy);
     sub.clear();
 
-    sub.put('1', 'i');
+    sub.add(new Character[] {'1', 'i'});
     match = new DictionnaryMatch("1", 2, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 2d, entropy);
     sub.clear();
 
-    sub.put('1', 'i');
+    sub.add(new Character[] {'1', 'i'});
     match = new DictionnaryMatch("1", 2, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 2d, entropy);
     sub.clear();
 
-    sub.put('1', 'i');
-    sub.put('3', 'e');
+    sub.add(new Character[] {'1', 'i'});
+    sub.add(new Character[] {'3', 'e'});
     match = new DictionnaryMatch("t13", 1407, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 11.458406613236534d, entropy);
     sub.clear();
 
-    sub.put('1', 'i');
-    sub.put('3', 'e');
+    sub.add(new Character[] {'1', 'i'});
+    sub.add(new Character[] {'3', 'e'});
     match = new DictionnaryMatch("t13", 1407, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 11.458406613236534d, entropy);
     sub.clear();
 
-    sub.put('1', 'i');
+    sub.add(new Character[] {'1', 'i'});
     match = new DictionnaryMatch("1", 2, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 2d, entropy);
     sub.clear();
 
-    sub.put('1', 'i');
+    sub.add(new Character[] {'1', 'i'});
     match = new DictionnaryMatch("1", 2, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 2d, entropy);
@@ -826,7 +825,7 @@ public class DictionnaryMatchTest {
     Assert.assertEquals(match.getToken(), 11.861862340059153d, entropy);
     sub.clear();
 
-    sub.put('1', 'i');
+    sub.add(new Character[] {'1', 'i'});
     match = new DictionnaryMatch("1", 2, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 2d, entropy);
@@ -1002,37 +1001,37 @@ public class DictionnaryMatchTest {
     Assert.assertEquals(match.getToken(), 0d, entropy);
     sub.clear();
 
-    sub.put('4', 'a');
+    sub.add(new Character[] {'4', 'a'});
     match = new DictionnaryMatch("th4", 8742, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 14.093747662785669d, entropy);
     sub.clear();
 
-    sub.put('4', 'a');
+    sub.add(new Character[] {'4', 'a'});
     match = new DictionnaryMatch("h4", 395, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 9.625708843064466d, entropy);
     sub.clear();
 
-    sub.put('4', 'a');
+    sub.add(new Character[] {'4', 'a'});
     match = new DictionnaryMatch("4", 5, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 3.321928094887362d, entropy);
     sub.clear();
 
-    sub.put('4', 'a');
+    sub.add(new Character[] {'4', 'a'});
     match = new DictionnaryMatch("th4m", 25399, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 15.632484076411412d, entropy);
     sub.clear();
 
-    sub.put('4', 'a');
+    sub.add(new Character[] {'4', 'a'});
     match = new DictionnaryMatch("h4m", 1376, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 11.426264754702098d, entropy);
     sub.clear();
 
-    sub.put('4', 'a');
+    sub.add(new Character[] {'4', 'a'});
     match = new DictionnaryMatch("4m", 124, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 7.954196310386876d, entropy);
@@ -1123,7 +1122,7 @@ public class DictionnaryMatchTest {
     Assert.assertEquals(match.getToken(), 8.894817763307945d, entropy);
     sub.clear();
 
-    sub.put('1', 'i');
+    sub.add(new Character[] {'1', 'i'});
     match = new DictionnaryMatch("1", 2, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 2d, entropy);
@@ -1169,13 +1168,13 @@ public class DictionnaryMatchTest {
     Assert.assertEquals(match.getToken(), 12.404609397837712d, entropy);
     sub.clear();
 
-    sub.put('1', 'i');
+    sub.add(new Character[] {'1', 'i'});
     match = new DictionnaryMatch("1", 2, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 2d, entropy);
     sub.clear();
 
-    sub.put('1', 'i');
+    sub.add(new Character[] {'1', 'i'});
     match = new DictionnaryMatch("1", 2, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 2d, entropy);
@@ -1211,37 +1210,37 @@ public class DictionnaryMatchTest {
     Assert.assertEquals(match.getToken(), 1d, entropy);
     sub.clear();
 
-    sub.put('0', 'o');
+    sub.add(new Character[] {'0', 'o'});
     match = new DictionnaryMatch("ScoRpi0", 287, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 14.209301046034144d, entropy);
     sub.clear();
 
-    sub.put('0', 'o');
+    sub.add(new Character[] {'0', 'o'});
     match = new DictionnaryMatch("ScoRpi0n", 299, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 14.666945170046835d, entropy);
     sub.clear();
 
-    sub.put('0', 'o');
+    sub.add(new Character[] {'0', 'o'});
     match = new DictionnaryMatch("pi0n", 23485, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 15.51945197314515d, entropy);
     sub.clear();
 
-    sub.put('0', 'o');
+    sub.add(new Character[] {'0', 'o'});
     match = new DictionnaryMatch("0n", 26, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 5.700439718141093d, entropy);
     sub.clear();
 
-    sub.put('0', 'o');
+    sub.add(new Character[] {'0', 'o'});
     match = new DictionnaryMatch("ScoRpi0ns", 26760, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 21.502206361878933d, entropy);
     sub.clear();
 
-    sub.put('0', 'o');
+    sub.add(new Character[] {'0', 'o'});
     match = new DictionnaryMatch("i0ns", 25689, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 15.648863110850051d, entropy);
@@ -1327,15 +1326,15 @@ public class DictionnaryMatchTest {
     Assert.assertEquals(match.getToken(), 13.122019082512358d, entropy);
     sub.clear();
 
-    sub.put('0', 'o');
-    sub.put('2', 'z');
+    sub.add(new Character[] {'0', 'o'});
+    sub.add(new Character[] {'2', 'z'});
     match = new DictionnaryMatch("ter20", 29539, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 15.850333366130798d, entropy);
     sub.clear();
 
-    sub.put('0', 'o');
-    sub.put('2', 'z');
+    sub.add(new Character[] {'0', 'o'});
+    sub.add(new Character[] {'2', 'z'});
     match = new DictionnaryMatch("200", 2892, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 12.497851836951119d, entropy);
@@ -1346,7 +1345,7 @@ public class DictionnaryMatchTest {
     Assert.assertEquals(match.getToken(), 4.247927513443585d, entropy);
     sub.clear();
 
-    sub.put('0', 'o');
+    sub.add(new Character[] {'0', 'o'});
     match = new DictionnaryMatch("000", 3952, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 12.948367231584678d, entropy);
@@ -1407,15 +1406,15 @@ public class DictionnaryMatchTest {
     Assert.assertEquals(match.getToken(), 13.122019082512358d, entropy);
     sub.clear();
 
-    sub.put('0', 'o');
-    sub.put('2', 'z');
+    sub.add(new Character[] {'0', 'o'});
+    sub.add(new Character[] {'2', 'z'});
     match = new DictionnaryMatch("ter20", 29539, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 15.850333366130798d, entropy);
     sub.clear();
 
-    sub.put('0', 'o');
-    sub.put('2', 'z');
+    sub.add(new Character[] {'0', 'o'});
+    sub.add(new Character[] {'2', 'z'});
     match = new DictionnaryMatch("200", 2892, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 12.497851836951119d, entropy);
@@ -1426,7 +1425,7 @@ public class DictionnaryMatchTest {
     Assert.assertEquals(match.getToken(), 4.247927513443585d, entropy);
     sub.clear();
 
-    sub.put('0', 'o');
+    sub.add(new Character[] {'0', 'o'});
     match = new DictionnaryMatch("000", 3952, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 12.948367231584678d, entropy);
@@ -1462,25 +1461,25 @@ public class DictionnaryMatchTest {
     Assert.assertEquals(match.getToken(), 10.956376157249672d, entropy);
     sub.clear();
 
-    sub.put('4', 'a');
+    sub.add(new Character[] {'4', 'a'});
     match = new DictionnaryMatch("4", 5, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 3.321928094887362d, entropy);
     sub.clear();
 
-    sub.put('4', 'a');
+    sub.add(new Character[] {'4', 'a'});
     match = new DictionnaryMatch("4", 5, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 3.321928094887362d, entropy);
     sub.clear();
 
-    sub.put('4', 'a');
+    sub.add(new Character[] {'4', 'a'});
     match = new DictionnaryMatch("4re", 36, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 6.169925001442312d, entropy);
     sub.clear();
 
-    sub.put('4', 'a');
+    sub.add(new Character[] {'4', 'a'});
     match = new DictionnaryMatch("4re", 36, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 6.169925001442312d, entropy);
@@ -1501,13 +1500,13 @@ public class DictionnaryMatchTest {
     Assert.assertEquals(match.getToken(), 2d, entropy);
     sub.clear();
 
-    sub.put('1', 'i');
+    sub.add(new Character[] {'1', 'i'});
     match = new DictionnaryMatch("1", 2, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 2d, entropy);
     sub.clear();
 
-    sub.put('1', 'i');
+    sub.add(new Character[] {'1', 'i'});
     match = new DictionnaryMatch("1", 2, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 2d, entropy);
@@ -1518,19 +1517,19 @@ public class DictionnaryMatchTest {
     Assert.assertEquals(match.getToken(), 2d, entropy);
     sub.clear();
 
-    sub.put('4', 'a');
+    sub.add(new Character[] {'4', 'a'});
     match = new DictionnaryMatch("4", 5, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 3.321928094887362d, entropy);
     sub.clear();
 
-    sub.put('4', 'a');
+    sub.add(new Character[] {'4', 'a'});
     match = new DictionnaryMatch("4", 5, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 3.321928094887362d, entropy);
     sub.clear();
 
-    sub.put('4', 'a');
+    sub.add(new Character[] {'4', 'a'});
     match = new DictionnaryMatch("4", 5, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 3.321928094887362d, entropy);
@@ -1546,22 +1545,22 @@ public class DictionnaryMatchTest {
     Assert.assertEquals(match.getToken(), 11.443979542601253d, entropy);
     sub.clear();
 
-    sub.put('4', 'a');
-    sub.put('5', 's');
+    sub.add(new Character[] {'4', 'a'});
+    sub.add(new Character[] {'5', 's'});
     match = new DictionnaryMatch("45", 71, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 7.149747119504682d, entropy);
     sub.clear();
 
-    sub.put('4', 'a');
-    sub.put('5', 's');
+    sub.add(new Character[] {'4', 'a'});
+    sub.add(new Character[] {'5', 's'});
     match = new DictionnaryMatch("45", 71, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 7.149747119504682d, entropy);
     sub.clear();
 
-    sub.put('4', 'a');
-    sub.put('5', 's');
+    sub.add(new Character[] {'4', 'a'});
+    sub.add(new Character[] {'5', 's'});
     match = new DictionnaryMatch("45", 71, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 7.149747119504682d, entropy);
@@ -1697,13 +1696,13 @@ public class DictionnaryMatchTest {
     Assert.assertEquals(match.getToken(), 13.675626303935397d, entropy);
     sub.clear();
 
-    sub.put('3', 'e');
+    sub.add(new Character[] {'3', 'e'});
     match = new DictionnaryMatch("ros3", 65, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 7.022367813028454d, entropy);
     sub.clear();
 
-    sub.put('3', 'e');
+    sub.add(new Character[] {'3', 'e'});
     match = new DictionnaryMatch("ros3bud", 245, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 8.936637939002573d, entropy);
@@ -1714,21 +1713,21 @@ public class DictionnaryMatchTest {
     Assert.assertEquals(match.getToken(), 9.618385502258606d, entropy);
     sub.clear();
 
-    sub.put('0', 'o');
+    sub.add(new Character[] {'0', 'o'});
     match = new DictionnaryMatch("r0s", 13085, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 14.675626303935397d, entropy);
     sub.clear();
 
-    sub.put('0', 'o');
-    sub.put('3', 'e');
+    sub.add(new Character[] {'0', 'o'});
+    sub.add(new Character[] {'3', 'e'});
     match = new DictionnaryMatch("r0s3", 65, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 7.022367813028454d, entropy);
     sub.clear();
 
-    sub.put('0', 'o');
-    sub.put('3', 'e');
+    sub.add(new Character[] {'0', 'o'});
+    sub.add(new Character[] {'3', 'e'});
     match = new DictionnaryMatch("r0s3bud", 245, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 8.936637939002573d, entropy);
@@ -1739,31 +1738,31 @@ public class DictionnaryMatchTest {
     Assert.assertEquals(match.getToken(), 9.618385502258606d, entropy);
     sub.clear();
 
-    sub.put('0', 'o');
-    sub.put('$', 's');
+    sub.add(new Character[] {'0', 'o'});
+    sub.add(new Character[] {'$', 's'});
     match = new DictionnaryMatch("R0$", 13085, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 15.675626303935397d, entropy);
     sub.clear();
 
-    sub.put('0', 'o');
-    sub.put('3', 'e');
-    sub.put('$', 's');
+    sub.add(new Character[] {'0', 'o'});
+    sub.add(new Character[] {'3', 'e'});
+    sub.add(new Character[] {'$', 's'});
     match = new DictionnaryMatch("R0$3", 65, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 8.60733031374961d, entropy);
     sub.clear();
 
-    sub.put('0', 'o');
-    sub.put('3', 'e');
-    sub.put('8', 'b');
-    sub.put('$', 's');
+    sub.add(new Character[] {'0', 'o'});
+    sub.add(new Character[] {'3', 'e'});
+    sub.add(new Character[] {'8', 'b'});
+    sub.add(new Character[] {'$', 's'});
     match = new DictionnaryMatch("R0$38uD", 245, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 11.936637939002573d, entropy);
     sub.clear();
 
-    sub.put('8', 'b');
+    sub.add(new Character[] {'8', 'b'});
     match = new DictionnaryMatch("8uD", 786, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 11.618385502258606d, entropy);
@@ -1914,7 +1913,7 @@ public class DictionnaryMatchTest {
     Assert.assertEquals(match.getToken(), 2.321928094887362d, entropy);
     sub.clear();
 
-    sub.put('9', 'g');
+    sub.add(new Character[] {'9', 'g'});
     match = new DictionnaryMatch("Ba9", 903, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 11.818582177480858d, entropy);
@@ -1930,13 +1929,13 @@ public class DictionnaryMatchTest {
     Assert.assertEquals(match.getToken(), 15.196602126523171d, entropy);
     sub.clear();
 
-    sub.put('9', 'g');
+    sub.add(new Character[] {'9', 'g'});
     match = new DictionnaryMatch("Bu9", 2048, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 13d, entropy);
     sub.clear();
 
-    sub.put('9', 'g');
+    sub.add(new Character[] {'9', 'g'});
     match = new DictionnaryMatch("Bu99", 5067, true, sub);
     entropy = match.calculateEntropy();
     Assert.assertEquals(match.getToken(), 14.306916113522544d, entropy);

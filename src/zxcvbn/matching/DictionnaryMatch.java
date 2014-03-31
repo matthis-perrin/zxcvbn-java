@@ -16,8 +16,7 @@
 
 package zxcvbn.matching;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
 
 /**
  *
@@ -28,7 +27,7 @@ public class DictionnaryMatch extends BasicMatch {
   
   private final int rank;
   private final boolean isL33t;
-  private final HashMap<Character, Character> l33tSubstitution;
+  private final ArrayList<Character[]> l33tSubstitution;
 
   
   /**
@@ -37,10 +36,10 @@ public class DictionnaryMatch extends BasicMatch {
    * @param match a <code>String</code> containing the password
    * @param rank the rank of the password in the dictionary
    * @param isL33t true if the password is written in l33t
-   * @param l33tSubstitution hash map of the l33t substitution
+   * @param l33tSubstitution <code>ArrayList</code> of the l33t substitutions
    */
   public DictionnaryMatch (String match, int rank, boolean isL33t,
-                           HashMap<Character, Character> l33tSubstitution) {
+                           ArrayList<Character[]> l33tSubstitution) {
     super(match);
     this.rank = rank;
     this.isL33t = isL33t;
@@ -118,13 +117,13 @@ public class DictionnaryMatch extends BasicMatch {
     if (!isL33t) return 0d;
     
     int possibilities = 0;
-    for (Map.Entry<Character, Character> e : l33tSubstitution.entrySet()) {
-      char original = e.getValue();
-      char sub = e.getKey();
+    for (Character[] sub : l33tSubstitution) {
+      char original = sub[0];
+      char newChar = sub[1];
       int substitutionCount = 0;
       int unSubstitutionCount = 0;
       for (char c : getToken().toCharArray()) {
-        if (c == sub) substitutionCount++;
+        if (c == newChar) substitutionCount++;
         if (c == original) unSubstitutionCount++;
       }
       int totalSub = substitutionCount + unSubstitutionCount;
@@ -157,9 +156,9 @@ public class DictionnaryMatch extends BasicMatch {
 
   
   /**
-   * @return the hash map of the l33t substitution
+   * @return the <code>ArrayList</code> of the l33t substitution
    */
-  public HashMap<Character, Character> getL33tSubstitution() {
+  public ArrayList<Character[]> getL33tSubstitution() {
     return l33tSubstitution;
   }
   
@@ -169,8 +168,12 @@ public class DictionnaryMatch extends BasicMatch {
    */
   @Override
   public int hashCode () {
+    int l33tHash = 1;
+    for (Character[] chars : l33tSubstitution) {
+      l33tHash += chars[0].hashCode() + chars[1].hashCode();
+    }
     return getToken().hashCode() + Integer.valueOf(rank).hashCode() + 
-           Boolean.valueOf(isL33t).hashCode() + l33tSubstitution.hashCode();
+           Boolean.valueOf(isL33t).hashCode() + l33tHash;
   }
 
   
