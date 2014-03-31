@@ -164,4 +164,34 @@ public class DictionnaryMatch extends BasicMatch {
   }
   
   
+  /**
+   * @return a unique hash code for this object
+   */
+  @Override
+  public int hashCode () {
+    return getToken().hashCode() + Integer.valueOf(rank).hashCode() + 
+           Boolean.valueOf(isL33t).hashCode() + l33tSubstitution.hashCode();
+  }
+
+  
+  /**
+   * Compare this object with another
+   * @param obj an other object to compare with
+   * @return <code>true</code> if the two objects are equals
+   */
+  @Override
+  public boolean equals (Object obj) {
+    if (obj == null) { return false; }
+    if (getClass() != obj.getClass()) { return false; }
+    final DictionnaryMatch other = (DictionnaryMatch) obj;
+    
+    if (!this.getToken().equals(other.getToken())) { return false; }
+    if (this.rank != other.rank) { return false; }
+    if (this.isL33t != other.isL33t) { return false; }
+    if (!this.l33tSubstitution.equals(other.l33tSubstitution)) { return false; }
+    
+    return true;
+  }
+  
+  
 }

@@ -20,6 +20,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -88,14 +89,15 @@ public class Dictionaries {
   /**
    * List all the ranked dictionaries
    */
-  public static HashMap<String, Integer>[] dictionaries =
-          (HashMap<String, Integer>[]) new Object[] {
-    passwords,
-    maleNames,
-    femaleNames,
-    surnames,
-    english
-  };
+  public static final ArrayList<HashMap<String, Integer>> dictionaries = 
+          new ArrayList<>();
+  static {
+    dictionaries.add(passwords);
+    dictionaries.add(maleNames);
+    dictionaries.add(femaleNames);
+    dictionaries.add(surnames);
+    dictionaries.add(english);
+  }
 
 
 }
