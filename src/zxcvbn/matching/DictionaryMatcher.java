@@ -34,9 +34,9 @@ public class DictionaryMatcher {
    * @param password the password that be analyzed
    * @return the list of all the match found
    */
-  public static ArrayList<DictionnaryMatch> match (String password) {
+  public static ArrayList<DictionaryMatch> match (String password) {
     
-    ArrayList<DictionnaryMatch> matches = new ArrayList<>();
+    ArrayList<DictionaryMatch> matches = new ArrayList<>();
     
     // Create all possible subsequences of the password
     for (int start = 0; start < password.length(); start++) {
@@ -62,7 +62,7 @@ public class DictionaryMatcher {
             // If there is a match, we add it to the result
             Integer rank = dictionary.get(unl33tSplit);
             if (rank != null) {
-              matches.add(new DictionnaryMatch(split, rank, isL33t, subs));
+              matches.add(new DictionaryMatch(split, rank, isL33t, subs));
             }
             
           }

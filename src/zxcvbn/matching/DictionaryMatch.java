@@ -22,7 +22,7 @@ import java.util.ArrayList;
  *
  * @author Matthis Perrin <matthis.perrin at gmail.com>
  */
-public class DictionnaryMatch extends BasicMatch {
+public class DictionaryMatch extends BasicMatch {
 
   
   private final int rank;
@@ -31,14 +31,14 @@ public class DictionnaryMatch extends BasicMatch {
 
   
   /**
-   * Create a new <code>DictionnaryMatch</code> which is a password that is
+   * Create a new <code>DictionaryMatch</code> which is a password that is
    * registered in one of the dictionaries
    * @param match a <code>String</code> containing the password
    * @param rank the rank of the password in the dictionary
    * @param isL33t true if the password is written in l33t
    * @param l33tSubstitution <code>ArrayList</code> of the l33t substitutions
    */
-  public DictionnaryMatch (String match, int rank, boolean isL33t,
+  public DictionaryMatch (String match, int rank, boolean isL33t,
                            ArrayList<Character[]> l33tSubstitution) {
     super(match);
     this.rank = rank;
@@ -186,7 +186,7 @@ public class DictionnaryMatch extends BasicMatch {
   public boolean equals (Object obj) {
     if (obj == null) { return false; }
     if (getClass() != obj.getClass()) { return false; }
-    final DictionnaryMatch other = (DictionnaryMatch) obj;
+    final DictionaryMatch other = (DictionaryMatch) obj;
     
     if (!this.getToken().equals(other.getToken())) { return false; }
     if (this.rank != other.rank) { return false; }
