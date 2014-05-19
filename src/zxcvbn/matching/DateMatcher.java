@@ -17,6 +17,7 @@
 package zxcvbn.matching;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -27,7 +28,19 @@ public class DateMatcher {
   
   
   private static final Pattern DATE_WITHOUT_SEPARATOR = Pattern.compile("^\\d{4,8}$");
-  
+  private static final Pattern DATE_WITH_SEPARATOR_YEAR_SUFFIX = Pattern.compile(""
+          + "^(\\d{1,2})"                        // Day (or month)
+          + "(\\s|-|/|\\\\|_|\\.)"              // Separator
+          + "(\\d{1,2})"                        // Month (or day)
+          + "\\2"                               // Same separator
+          + "(19\\d{2}|200\\d|201\\d|\\d{2})$"); // Year
+  private static final Pattern DATE_WITH_SEPARATOR_YEAR_PREFIX = Pattern.compile(""
+          + "^(19\\d{2}|200\\d|201\\d|\\d{2})"   // Year
+          + "(\\s|-|/|\\\\|_|\\.)"              // Separator
+          + "(\\d{1,2})"                        // Day (or month)
+          + "\\2"                               // Same separator
+          + "(\\d{1,2})$");                      // Month (or day)
+
   
   /**
    * Look for every part of the password that is a date
@@ -36,14 +49,8 @@ public class DateMatcher {
    */
   public static ArrayList<DateMatch> match (String password) {
   
-    System.out.println(password);
-    System.out.println("");
-    
     ArrayList<DateMatch> dateMatches = matchDatesWithoutSeparator(password);
-    
-    for (DateMatch m : dateMatches) {
-      System.out.println(m.getDay() + " " + m.getMonth() + " " + m.getYear());
-    }
+    dateMatches.addAll(matchDatesWithSeparator(password));
     
     return dateMatches;
     
@@ -149,6 +156,52 @@ public class DateMatcher {
   }
   
   
+  
+  /**
+   * Extract all the possible dates with a separator
+   * ("-", "/", " ", "\", "_" or ".") from a password
+   * @param password the password that is analyzed
+   * @return the list of all the date with separator found
+   */
+  private static ArrayList<DateMatch> matchDatesWithSeparator (String password) {
+    
+    // Initialize the list of matching dates
+    ArrayList<DateMatch> dateMatches = new ArrayList<>();
+    
+    // Create all possible subsequences of the password
+    for (int start = 0; start < password.length(); start++) {
+      for (int end = start + 6; end <= password.length(); end++) {
+      
+        // Get the subsequence
+        String passwordChunk = password.substring(start, end);
+        
+        // Extract the date (if there is one) with the year as prefix
+        Matcher m1 = DATE_WITH_SEPARATOR_YEAR_SUFFIX.matcher(passwordChunk);
+        if (m1.matches()) {
+          ValidDateSplit split = isDateValid(m1.group(1), m1.group(3), m1.group(4));
+          if (split != null) {
+            dateMatches.add(new DateMatch(split.date, split.month, split.year, m1.group(2)));
+          }
+        }
+        
+        // Extract the date (if there is one) with the year as suffix
+        Matcher m2 = DATE_WITH_SEPARATOR_YEAR_PREFIX.matcher(passwordChunk);
+        if (m2.matches()) {
+          ValidDateSplit split = isDateValid(m2.group(4), m2.group(3), m2.group(1));
+          if (split != null) {
+            dateMatches.add(new DateMatch(split.date, split.month, split.year, m2.group(2)));
+          }
+        }
+        
+      }
+    }
+    
+    return dateMatches;
+    
+  }
+  
+  
+  
   /**
    * Verify that a date is valid. Day and month can be swapped. year must be
    * two digit or four digit and between 1900 and 2020.
@@ -218,6 +271,5 @@ public class DateMatcher {
       this.year = year;
     }
   }
-  
   
 }

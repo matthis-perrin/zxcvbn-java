@@ -16,6 +16,7 @@
 
 package zxcvbn.matching;
 
+import java.util.ArrayList;
 import org.junit.Test;
 
 /**
@@ -29,7 +30,12 @@ public class DateMatcherTest {
    */
   @Test
   public void testMatch() {
-    DateMatcher.match("121318237462819374682346873244");
+    String password = "121935-18-2374_6_281.97.4682346 8 1973 2 44";
+    ArrayList<DateMatch> matches = DateMatcher.match(password);
+    for (DateMatch m : matches) {
+      String sep = (m.getSeparator() == "") ? "[empty]" : m.getSeparator();
+      System.out.println(m.getDay() + sep + m.getMonth() + sep + m.getYear());
+    }
   }
   
 }
