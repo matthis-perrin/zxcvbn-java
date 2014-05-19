@@ -31,7 +31,7 @@ public class DictionaryMatcher {
   
   /**
    * Look for every part of the password that match an entry in our dictionaries
-   * @param password the password that be analyzed
+   * @param password the password that is analyzed
    * @return the list of all the match found
    */
   public static ArrayList<DictionaryMatch> match (String password) {
@@ -99,7 +99,7 @@ public class DictionaryMatcher {
    * <code>HashMap</code> describing the common l33t substitutions
    */
   private static final HashMap<Character, Character[]> l33tTable = 
-          new HashMap<Character, Character[]>();
+          new HashMap<>();
   static {
     l33tTable.put('!', new Character[] { 'i' });
     l33tTable.put('$', new Character[] { 's' });
